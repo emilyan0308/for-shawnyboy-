@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 900 Days! ❤️</title>
+    <style>
+        body {
+            font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+            background-color: #fff0f3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            color: #4a4a4a;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            text-align: center;
+            width: 85%;
+            max-width: 350px;
+        }
+        input {
+            width: 80%;
+            padding: 12px;
+            margin: 15px 0;
+            border: 2px solid #ffb3c1;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+        button {
+            background-color: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .quiz-option {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            background: #fff0f3;
+            border: 1px solid #ffb3c1;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .quiz-option:active { background: #ffb3c1; }
+        
+        /* Final Heart Design */
+        #final-heart {
+            display: none;
+            position: relative;
+            animation: beat 1s infinite alternate;
+        }
+        .heart-shape {
+            background-color: #ff0000;
+            width: 300px;
+            height: 300px;
+            position: relative;
+            transform: rotate(-45deg);
+            margin: 50px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .heart-shape:before, .heart-shape:after {
+            content: "";
+            background-color: #ff0000;
+            border-radius: 50%;
+            width: 300px;
+            height: 300px;
+            position: absolute;
+        }
+        .heart-shape:before { top: -150px; left: 0; }
+        .heart-shape:after { left: 150px; top: 0; }
+        
+        .heart-text {
+            color: white;
+            transform: rotate(45deg);
+            z-index: 10;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            width: 220px;
+            font-weight: bold;
+        }
+
+        @keyframes beat {
+            from { transform: scale(1); }
+            to { transform: scale(1.05); }
+        }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+
+    <!-- Step 1: Password -->
+    <div id="step1" class="container">
+        <h3>우리가 사귄 날짜?</h3>
+        <p style="font-size: 0.8rem; color: #888;">(0308형식으로 작성)</p>
+        <input type="number" id="dateInput" placeholder="4자리 숫자 입력">
+        <br>
+        <button onclick="checkStep1()">Enter</button>
+    </div>
+
+    <!-- Step 2: Quiz -->
+    <div id="step2" class="container hidden">
+        <h3 id="quiz-title">시현이가 가장 좋아하는 권호의 모습은?</h3>
+        <div class="quiz-option" onclick="wrongAnswer()">1) 얼굴</div>
+        <div class="quiz-option" onclick="wrongAnswer()">2) 몸</div>
+        <div class="quiz-option" onclick="wrongAnswer()">3) 고추</div>
+        <div class="quiz-option" onclick="correctAnswer()">4) 다</div>
+        <p id="error-msg" style="color: red; font-size: 0.9rem; margin-top: 10px;"></p>
+    </div>
+
+    <!-- Step 3: Final Heart -->
+    <div id="final-heart">
+        <div class="heart-shape">
+            <div class="heart-text">
+                900일 축하해. <br>
+                선물해주고 싶은데 군대에 있어서. <br>
+                이 숫자들을 카카오톡 선물하기에 넣어서... <br>
+                그 카카오톡 머니로 맛있는거 먹어. <br><br>
+                <span style="font-size: 1.2rem; background: yellow; color: black; padding: 2px 5px; border-radius: 5px;">
+                    <!-- 여기에 실제 선물 코드를 적으세요 -->
+                    2BW73B3K4M
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function checkStep1() {
+            const val = document.getElementById('dateInput').value;
+            if(val === "1122") {
+                document.getElementById('step1').classList.add('hidden');
+                document.getElementById('step2').classList.remove('hidden');
+            } else {
+                alert("다시 생각해보세요! ❤️");
+            }
+        }
+
+        function wrongAnswer() {
+            document.getElementById('error-msg').innerText = "choose again";
+        }
+
+        function correctAnswer() {
+            document.getElementById('step2').classList.add('hidden');
+            document.getElementById('final-heart').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
